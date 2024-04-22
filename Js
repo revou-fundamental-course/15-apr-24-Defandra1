@@ -1,0 +1,30 @@
+function isValidTemperature(input) {
+    return !isNaN(input) && input.trim() !== '';
+}
+
+function convertTemperature() {
+    var tempInput = document.getElementById('tempValue').value;
+    var convertTo = document.getElementById('convertTo').value;
+    var resultDiv = document.getElementById('result');
+
+    if (!isValidTemperature(tempInput)) {
+        resultDiv.textContent = "Masukkan angka yang valid.";
+        return;
+    }
+
+    var tempValue = parseFloat(tempInput);
+    var convertedValue;
+    var explanation;
+
+    if (convertTo === 'celsius') {
+        // Konversi ke Celcius
+        convertedValue = (tempValue - 32) * 5/9;
+        explanation = `${tempValue} Fahrenheit setara dengan ${convertedValue.toFixed(2)} Celcius.`;
+    } else {
+        // Konversi ke Fahrenheit
+        convertedValue = (tempValue * 9/5) + 32;
+        explanation = `${tempValue} Celcius setara dengan ${convertedValue.toFixed(2)} Fahrenheit.`;
+    }
+
+    resultDiv.textContent = explanation;
+}
